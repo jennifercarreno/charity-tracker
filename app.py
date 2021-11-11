@@ -17,12 +17,12 @@ def index():
 
 # creates a new donation
 @app.route('/donations/new')
-def playlists_new():
+def donations_new():
     return render_template('donations_new.html', donation={}, name='New Playlist')
 
-# Note the methods parameter that explicitly tells the route that this is a POST
+# the form to make a new donation
 @app.route('/donations', methods=['POST'])
-def playlists_submit():
+def donations_submit():
     donation = {
         'name': request.form.get('name'),
         'description': request.form.get('description'),
@@ -30,15 +30,15 @@ def playlists_submit():
     donations.insert_one(donation)
     return redirect (url_for('index'))
 
+# shows a single donation
 @app.route('/donations/<donation_id>')
-def playlists_show(donation_id):
-    """Show a single playlist."""
+def donations_show(donation_id):
     donation = donations.find_one({'_id': ObjectId(donation_id)})
     return render_template('donations_show.html', donation=donation)
 
+# deletes a playlist
 @app.route('/donations/<donation_id>/delete', methods=['POST'])
-def playlists_delete(donation_id):
-    """Delete one playlist."""
+def donations_delete(donation_id):
     donations.delete_one({'_id': ObjectId(donation_id)})
     return redirect(url_for('index'))
 

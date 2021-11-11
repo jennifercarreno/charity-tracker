@@ -6,8 +6,22 @@
 
     <a href='/donations/new'>New Donation</a>
 
-    {% for donation in donations %}
-        <h2><a href='/donations/{{ donation._id }}'>{{ donation.name }}</a></h2>
-        <small>{{ donation.description }}</small>
-    {% endfor %}
+    <table>
+        <tr>
+            <th>Donation Name</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+        {% for donation in donations %}
+            <tr>
+                <td style="text-align: center;"><a href='/donations/{{ donation._id }}'>{{ donation.name }}</a></td>
+                <td style="text-align: center;">{{ donation.description }}</td>
+                <td style="text-align: center;">
+                    <a href="/donations_delete/{{donation.id}}">Delete</a>
+                    <br>
+                    <a href="/update/{{donation.id}}">Update</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
 {% endblock %}
