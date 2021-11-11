@@ -7,7 +7,7 @@
     <a href='/donations/new'>New Donation</a>
 
     {% for donation in donations %}
-        <h2>{{ donation.name }}</h2>
+        <h2><a href='/donations/{{ donation._id }}'>{{ donation.name }}</a></h2>
         <small>{{ donation.description }}</small>
     {% endfor %}
 {% endblock %}

@@ -15,7 +15,7 @@ app = Flask(__name__)
 def index():
     return render_template('donations_index.html', donations=donations.find())
 
-# creates a new playlist
+# creates a new donation
 @app.route('/donations/new')
 def playlists_new():
     return render_template('donations_new.html', donation={}, name='New Playlist')
@@ -35,6 +35,12 @@ def playlists_show(donation_id):
     """Show a single playlist."""
     donation = donations.find_one({'_id': ObjectId(donation_id)})
     return render_template('donations_show.html', donation=donation)
+
+@app.route('/donations/<donation_id>/delete', methods=['POST'])
+def playlists_delete(donation_id):
+    """Delete one playlist."""
+    donations.delete_one({'_id': ObjectId(donation_id)})
+    return redirect(url_for('index'))
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=os.environ.get('PORT', 5000))
