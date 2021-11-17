@@ -1,13 +1,12 @@
-<!-- templates/donations_new.html -->
+<!-- templates/donations_edit.html -->
 {% extends 'base.html' %}
 
 {% block content %}
-<form method='POST' action='/donations'>
+<form method='POST' action='/donations/{{donation._id}}/'>
     {% include 'partials/donations_form.html' %}
-    <!-- BUTTON -->
     <p>
         <button type='submit'>Save Donation</button>
     </p>
-
 </form>
+
 {% endblock %}

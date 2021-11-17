@@ -18,7 +18,7 @@ def index():
 # creates a new donation
 @app.route('/donations/new')
 def donations_new():
-    return render_template('donations_new.html', donation={}, name='New Playlist')
+    return render_template('donations_new.html', donation={}, title='New Donation')
 
 # the form to make a new donation
 @app.route('/donations', methods=['POST'])
@@ -26,6 +26,8 @@ def donations_submit():
     donation = {
         'name': request.form.get('name'),
         'description': request.form.get('description'),
+        'amount': request.form.get('amount'),
+        'date': request.form.get('date')
     }
     donations.insert_one(donation)
     return redirect (url_for('index'))
@@ -35,6 +37,29 @@ def donations_submit():
 def donations_show(donation_id):
     donation = donations.find_one({'_id': ObjectId(donation_id)})
     return render_template('donations_show.html', donation=donation)
+
+# edit a donation
+@app.route('/donations/<donation_id>/edit')
+def donations_edit(donation_id):
+    donation = donations.find_one({'_id': ObjectId(donation_id)})
+    return render_template('donations_edit.html', donation=donation, title='Edit Donation')
+
+# update a donation
+@app.route('/donations/<donation_id>/', methods=['POST'])
+def donations_update(donation_id):
+    updated_donation = {
+        'name': request.form.get('name'),
+        'description': request.form.get('description'),
+        'amount': request.form.get('amount'),
+        'date': request.form.get('date')
+    }
+    # set the former playlist to the new one we just updated/edited
+    donations.update_one(
+        {'_id': ObjectId(donation_id)},
+        {'$set': updated_donation})
+    # take us back to the playlist's show page
+    return redirect(url_for('donations_show', donation_id=donation_id))
+
 
 # deletes a playlist
 @app.route('/donations/<donation_id>/delete', methods=['POST'])

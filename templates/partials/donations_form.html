@@ -1,0 +1,27 @@
+<!-- templates/partials/donations_form.html -->
+
+<fieldset>
+    <legend>{{ title }}</legend>
+    <!-- TITLE -->
+    <p>
+        <label for='donation-name'>Name</label><br>
+        <input id='donation-name' type='text' name='name' value='{{ donation.name }}'/>
+    </p>
+    
+    <!-- DESCRIPTION -->
+    <p>
+      <label for='description'>Description</label><br>
+      <input id='description' type='text' name='description' value='{{ donation.description }}' />
+    </p>
+    
+    <p>
+        <label for='amount'>Amount</label><br>
+        <input type='number' name='amount' value='{{donation.amount}}'/>
+    </p>
+
+    <p>
+        <label for='date'>Date</label><br>
+        <input type='date' name='date' value='{{donation.date}}' />
+    </p>
+</fieldset>
+

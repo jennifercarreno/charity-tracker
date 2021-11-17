@@ -6,21 +6,19 @@
 <h1>{{ donation.name }}</h1>
 <h2>{{ donation.description }}</h2>
 
-<table>
+<table class = table-bordered>
     <tr>
         <th>Donation</th>
         <th>Description</th>
-        <th>Actions</th>
+        <th>Donation Amount</th>
+        <th>Date</th>
     </tr>
 
     <tr>
         <td style="text-align: center;">{{ donation.name }}</td>
         <td style="text-align: center;">{{ donation.description }}</td>
-        <td style="text-align: center;">
-            <a href="/donations_delete/{{donation.id}}">Delete</a>
-            <br>
-            <a href="/update/{{donation.id}}">Update</a>
-        </td>
+        <td style="text-align: center;">{{ donation.amount }}</td>
+        <td style="text-align: center;">{{ donation.date }}</td>
     </tr>
 
 </table>
@@ -28,4 +26,6 @@
 <p><form method='POST' action='/donations/{{ donation._id }}/delete'>
     <button type='submit'>Delete</button>
 </form></p>
+
+<p><a href='/donations/{{ donation._id }}/edit'>Edit</a></p>
 {% endblock %}
