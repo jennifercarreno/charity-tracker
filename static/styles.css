@@ -1,9 +1,43 @@
 body {
     text-align: center;
+    padding-top: 20px;
 }
 
 table {
     margin-left: auto;
     margin-right: auto;
+    margin-top: 20px;
     width: 1000px;
+}
+
+a {
+    color:hotpink;
+}
+
+a:hover {
+    color: mediumorchid;
+}
+
+button {
+    background-color: white;
+    border: none;
+    color: hotpink;
+}
+
+button:hover {
+    color: mediumorchid;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content:center;
+    /* border: mediumseagreen; */
+    /* border-radius: 2px;
+    border-style: dashed; */
+    margin: auto;
+
+}
+
+.action-buttons button {
+    margin: 20px;
 }

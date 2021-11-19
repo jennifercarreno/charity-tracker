@@ -23,9 +23,13 @@
 
 </table>
 
-<p><form method='POST' action='/donations/{{ donation._id }}/delete'>
-    <button type='submit'>Delete</button>
-</form></p>
+<div class="action-buttons col-1">
 
-<p><a href='/donations/{{ donation._id }}/edit'>Edit</a></p>
+    <p><form method='POST' action='/donations/{{ donation._id }}/delete'>
+        <button type='submit'>Delete</button>
+    </form></p>
+
+    <p><a href='/donations/{{ donation._id }}/edit'><button type='submit'>Edit</button></a></p>
+
+</div>
 {% endblock %}
