@@ -7,21 +7,25 @@
         <label for='donation-name'>Name</label><br>
         <input id='donation-name' type='text' name='name' value='{{ donation.name }}'/>
     </p>
-    
-    <!-- DESCRIPTION -->
-    <p>
-      <label for='description'>Description</label><br>
-      <input id='description' type='text' name='description' value='{{ donation.description }}' />
-    </p>
+    <!-- AMOUNT DONATED -->
     
     <p>
         <label for='amount'>Amount</label><br>
         <input type='number' name='amount' value='{{donation.amount}}'/>
     </p>
 
+    <!-- DATE -->
+
     <p>
         <label for='date'>Date</label><br>
         <input type='date' name='date' value='{{donation.date}}' />
     </p>
+
+    <!-- DESCRIPTION -->
+    <p>
+        <label for='description'>Description</label><br>
+        <input id='description' type='text' name='description' value='{{ donation.description }}' />
+    </p>
+      
 </fieldset>
 

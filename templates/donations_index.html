@@ -17,5 +17,12 @@
                 <td style="text-align: center;">{{ donation.description }}</td>
             </tr>
         {% endfor %}
+
+        <tr>
+            <td>SUM</td>
+            <td>{{amount_sum}}</td>
+        </tr>
+        <!-- <tr>{{ amount_sum }}</tr> -->
+
     </table>
 {% endblock %}

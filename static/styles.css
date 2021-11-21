@@ -31,9 +31,6 @@ button:hover {
 .action-buttons {
     display: flex;
     justify-content:center;
-    /* border: mediumseagreen; */
-    /* border-radius: 2px;
-    border-style: dashed; */
     margin: auto;
 
 }

@@ -7,12 +7,26 @@ host = os.environ.get('DB_URL')
 client = MongoClient(host=host)
 db = client.charityTracker
 donations = db.donations
-
-
+amounts = db.amounts
+amount_sum = 0
 app = Flask(__name__)
+
+def returnSum():
+    amount_list =[]
+    for donation in donations.find():
+        donation_amount = donation.get('amount')
+        # donation_amount = donation.find({'amount'})
+        if donation_amount != '':
+            donation_amount = float(donation_amount)
+            amount_list.append(donation_amount)
+    # print(amount_list)
+    amount_sum = sum(amount_list)
+    print(amount_sum)
+
 
 @app.route('/')
 def index():
+    returnSum()
     return render_template('donations_index.html', donations=donations.find())
 
 # creates a new donation
@@ -30,6 +44,8 @@ def donations_submit():
         'date': request.form.get('date')
     }
     donations.insert_one(donation)
+
+    returnSum(donation)
     return redirect (url_for('index'))
 
 # shows a single donation
@@ -66,6 +82,7 @@ def donations_update(donation_id):
 def donations_delete(donation_id):
     donations.delete_one({'_id': ObjectId(donation_id)})
     return redirect(url_for('index'))
+
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=os.environ.get('PORT', 5000))
