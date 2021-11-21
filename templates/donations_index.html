@@ -18,11 +18,12 @@
             </tr>
         {% endfor %}
 
-        <tr>
-            <td>SUM</td>
-            <td>{{amount_sum}}</td>
-        </tr>
-        <!-- <tr>{{ amount_sum }}</tr> -->
+    </table>
 
+    <table class = table-bordered>
+        <tr>
+            <td style="text-align: center;"><strong>SUM</strong></td>
+            <td style="text-align: center;">{{ amount_sum }}</td>
+        </tr>
     </table>
 {% endblock %}

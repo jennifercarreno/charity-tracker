@@ -10,6 +10,10 @@ table {
     width: 1000px;
 }
 
+td {
+    width: 500px;
+}
+
 a {
     color:hotpink;
 }

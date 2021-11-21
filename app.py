@@ -23,11 +23,13 @@ def returnSum():
     amount_sum = sum(amount_list)
     print(amount_sum)
 
+    return str(amount_sum)
 
+returnSum()
 @app.route('/')
 def index():
-    returnSum()
-    return render_template('donations_index.html', donations=donations.find())
+    amount_sum = returnSum()
+    return render_template('donations_index.html', donations=donations.find(), amount_sum = amount_sum)
 
 # creates a new donation
 @app.route('/donations/new')
@@ -45,7 +47,6 @@ def donations_submit():
     }
     donations.insert_one(donation)
 
-    returnSum(donation)
     return redirect (url_for('index'))
 
 # shows a single donation
