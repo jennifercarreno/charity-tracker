@@ -3,27 +3,32 @@
 
 {% block content %}
     <h1>Donations</h1>
+    
+    <div id= "main-display">      
+        <h2>Jennifer's Charity Tracker</h2>
 
-    <a href='/donations/new'>New Donation</a>
+        <a class="display-action-links mx-3" href='/donations/new'>New Donation</a>
+        <a class="display-action-links mx-3" href="">Search by category</a>
 
-    <table class = table-bordered>
-        <tr>
-            <th>Donation Name</th>
-            <th>Description</th>
-        </tr>
-        {% for donation in donations %}
+        <table class = table-bordered>
             <tr>
-                <td style="text-align: center;"><a href='/donations/{{ donation._id }}'>{{ donation.name }}</a></td>
-                <td style="text-align: center;">{{ donation.description }}</td>
+                <th>Donation Name</th>
+                <th>Description</th>
             </tr>
-        {% endfor %}
+            {% for donation in donations %}
+                <tr>
+                    <td style="text-align: center;"><a href='/donations/{{ donation._id }}'>{{ donation.name }}</a></td>
+                    <td style="text-align: center;">{{ donation.description }}</td>
+                </tr>
+            {% endfor %}
 
-    </table>
+        </table>
 
-    <table class = table-bordered>
-        <tr>
-            <td style="text-align: center;"><strong>SUM</strong></td>
-            <td style="text-align: center;">{{ amount_sum }}</td>
-        </tr>
-    </table>
+        <table class = table-bordered>
+            <tr>
+                <td style="text-align: center;"><strong>SUM</strong></td>
+                <td style="text-align: center;">{{ amount_sum }}</td>
+            </tr>
+        </table>
+    </div>
 {% endblock %}
