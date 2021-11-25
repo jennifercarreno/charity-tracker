@@ -43,6 +43,7 @@ def donations_submit():
         'name': request.form.get('name'),
         'description': request.form.get('description'),
         'amount': request.form.get('amount'),
+        'category':request.form.get('category'),
         'date': request.form.get('date')
     }
     donations.insert_one(donation)
@@ -68,6 +69,7 @@ def donations_update(donation_id):
         'name': request.form.get('name'),
         'description': request.form.get('description'),
         'amount': request.form.get('amount'),
+        'category':request.form.get('category'),
         'date': request.form.get('date')
     }
     # set the former playlist to the new one we just updated/edited
