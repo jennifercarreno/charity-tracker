@@ -9,13 +9,13 @@ db = client.charityTracker
 donations = db.donations
 amounts = db.amounts
 amount_sum = 0
+sorted_donations = []
 app = Flask(__name__)
 
 def returnSum():
     amount_list =[]
     for donation in donations.find():
         donation_amount = donation.get('amount')
-        # donation_amount = donation.find({'amount'})
         if donation_amount != '':
             donation_amount = float(donation_amount)
             amount_list.append(donation_amount)
@@ -25,7 +25,15 @@ def returnSum():
 
     return str(amount_sum)
 
-returnSum()
+def sortDonations(selected_category):
+    sorted_donations=[]
+    for donation in donations.find():
+        donation_category = donation['category']
+        if donation_category == selected_category:
+            sorted_donations.append(donation)
+    return sorted_donations
+
+
 @app.route('/')
 def index():
     amount_sum = returnSum()
@@ -47,7 +55,6 @@ def donations_submit():
         'date': request.form.get('date')
     }
     donations.insert_one(donation)
-
     return redirect (url_for('index'))
 
 # shows a single donation
@@ -85,6 +92,15 @@ def donations_update(donation_id):
 def donations_delete(donation_id):
     donations.delete_one({'_id': ObjectId(donation_id)})
     return redirect(url_for('index'))
+
+
+@app.route('/donations/sort', methods=['GET','POST'])
+def donations_sort():
+    print("sort button clicked")
+    selected_category = request.values.get('select-category')
+    print(selected_category)
+    sorted_donations = sortDonations(selected_category)
+    return render_template('donations_sort.html', sorted_donations=sorted_donations)
 
 
 if __name__ == '__main__':

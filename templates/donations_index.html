@@ -7,8 +7,29 @@
     <div id= "main-display">      
         <h2>Jennifer's Charity Tracker</h2>
 
-        <a class="display-action-links mx-3" href='/donations/new'>New Donation</a>
-        <a class="display-action-links mx-3" href="">Search by category</a>
+        <div class="container">
+            <div class="row">           
+                <a class="display-action-links col" href='/donations/new'>New Donation</a>
+
+                <form method ="GET" action='/donations/sort' class="col" id='select-category'>
+                    <label for='select-category'>Category</label><br>
+                    <select id="select-category" name="select-category">
+                        <option value="selected" selected disabled hidden>Select...</option>
+                        <option value="Animals">Animals</option>
+                        <option value="Arts">Arts and Humanities</option>
+                        <option value="Community">Community</option>
+                        <option value="Education">Education</option>
+                        <option value="Environment">Environment</option>
+                        <option value="International">International</option>
+                        <option value="Research">Research</option>
+                    </select>   
+                        <!-- BUTTON -->
+                    <p>
+                        <button type='submit'>sort</button>
+                    </p>
+                </form>
+        </div>
+        </div>
 
         <table class = table-bordered>
             <tr>
